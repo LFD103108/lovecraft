@@ -4,6 +4,7 @@
 
 # Libraries
 import numpy as np   # imports the Numpy library for numerical tools
+import pandas as pd                     # imports the Pandas library for data manipulation and analysis
 import os            # imports the OS library for interacting with the operating system  
 #os.chdir('..')       # changes to the parent directory
 
@@ -38,3 +39,15 @@ class bibliography():
         self.texts = {name[0:-4]: open( "data/silver/texts/" + name ).read()  for name in self.files}
         # entries are the story names, with the stories being stored in strings
         # e.g. self.texts['cthulhu'] = "The Call of Cthulhu" story, as a string
+
+        # text metadata DataFrame 
+        self.df_texts = pd.read_csv("data/gold/texts.csv")  # loads the texts dataframe
+
+        # numerical representation
+        self.numerical_dict = np.load('data/gold/numerical_dict.npy', allow_pickle=True).item()  # loads the numerical dictionary from a file in NumPy format
+        # entries are the story names, with the stories being stored as lists of numerical values
+        
+        # Fourier transform
+        self.fourier_dict = np.load('data/gold/fourier_dict.npy', allow_pickle=True).item()  # loads the Fourier dictionary from a file in NumPy format
+        # entries are the story names, with the stories being stored as lists of complex numbers (the Fourier transform of the numerical representation)
+        
