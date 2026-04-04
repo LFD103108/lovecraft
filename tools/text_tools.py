@@ -17,9 +17,10 @@ def search_name(file_path, name):
     with open(file_path) as file: 
         text = file.read() # reads the file
         if name in text: 
-            print('YES')   # prints 'YES' if the name is found in the text
+            value = 1   # sets the value to 1
         else:
-            print('NO')    # prints 'NO' if the name is not found in the text
+            value = 0   # sets the value to 0
+    return value
 
 def string_to_numerical(string):
     numerical_form = [ ord(symbol) for symbol in string] # converts each symbol to a numerical value
