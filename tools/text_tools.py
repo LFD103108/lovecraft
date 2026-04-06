@@ -6,6 +6,7 @@
 import numpy as np   # imports the Numpy library for numerical tools
 import pandas as pd                     # imports the Pandas library for data manipulation and analysis
 import os            # imports the OS library for interacting with the operating system  
+from pathlib import Path               # imports the Path class from the pathlib library for working with file paths
 #os.chdir('..')       # changes to the parent directory
 
 ###########################################################################################################
