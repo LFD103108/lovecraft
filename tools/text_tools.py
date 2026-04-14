@@ -7,11 +7,13 @@ import numpy as np   # imports the Numpy library for numerical tools
 import pandas as pd                     # imports the Pandas library for data manipulation and analysis
 import os            # imports the OS library for interacting with the operating system  
 from pathlib import Path               # imports the Path class from the pathlib library for working with file paths
+import re  # for regex splitting
 #os.chdir('..')       # changes to the parent directory
 
 ###########################################################################################################
 
 # Functions
+
 
 # this functions checks if a given name is in the file
 def search_name(file_path, name):
@@ -26,6 +28,28 @@ def search_name(file_path, name):
 def string_to_numerical(string):
     numerical_form = [ ord(symbol) for symbol in string] # converts each symbol to a numerical value
     return np.array(numerical_form)                      # returns the numerical form as a Numpy array
+
+
+# this function reads a filename.txt file and creates a dictionary with the file name and the rest of the text splitted into phrases.
+def text_phrases(filename): 
+
+    phrases_dict = {}
+
+    with open(filename + '.txt', 'r', encoding='utf-8') as file:
+        text = file.read() 
+
+    abbreviations = ["Mr", "Mrs", "Ms", "Dr", "Prof", "Sr", "Jr", "St", "Mme", "Mlle"]
+    abbreviations_lookbehind = "".join(f"(?<!\\b{abbr})" for abbr in abbreviations)
+
+    split_pattern = re.compile(
+        rf'{abbreviations_lookbehind}\.(?=(?:["\'\)\]]*\s+[A-Z]|["\'\)\]]*$))'
+    )
+
+    phrases = [phrase.strip() for phrase in re.split(split_pattern, text) if phrase.strip()]
+
+    phrases_dict[filename] = phrases
+
+    return phrases_dict 
 
 ###########################################################################################################
 
