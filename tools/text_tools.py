@@ -5,6 +5,7 @@
 # Libraries
 import numpy as np   # imports the Numpy library for numerical tools
 import pandas as pd                     # imports the Pandas library for data manipulation and analysis
+from scipy import stats # imports statiscal tools
 import os            # imports the OS library for interacting with the operating system  
 from pathlib import Path               # imports the Path class from the pathlib library for working with file paths
 import re  # for regex splitting
@@ -30,26 +31,23 @@ def string_to_numerical(string):
     return np.array(numerical_form)                      # returns the numerical form as a Numpy array
 
 
-# this function reads a filename.txt file and creates a dictionary with the file name and the rest of the text splitted into phrases.
-def text_phrases(filename): 
+# this function reads a filename.txt file and creates a dictionary with the file name and the rest of the text splitted into sentences
 
-    phrases_dict = {}
+def text_sentences(filename): 
 
-    with open(filename + '.txt', 'r', encoding='utf-8') as file:
+
+    with open(filename, 'r', encoding='utf-8') as file:
         text = file.read() 
 
     abbreviations = ["Mr", "Mrs", "Ms", "Dr", "Prof", "Sr", "Jr", "St", "Mme", "Mlle"]
-    abbreviations_lookbehind = "".join(f"(?<!\\b{abbr})" for abbr in abbreviations)
+    abbreviations_lookbehind = "".join(f"(?<!\\b{abbr})" for abbr in abbreviations) # makes a lookbehind that detects patterns before the split reference. 
 
     split_pattern = re.compile(
-        rf'{abbreviations_lookbehind}\.(?=(?:["\'\)\]]*\s+[A-Z]|["\'\)\]]*$))'
-    )
+    rf'{abbreviations_lookbehind}\.(?:[“”"\'\)\]]*)(?=\s+[A-Z]|$)')  # join the lookbehind with a positive lookahead that detects patters after the split reference. 
 
-    phrases = [phrase.strip() for phrase in re.split(split_pattern, text) if phrase.strip()]
+    sentences = [phrase.strip() for phrase in re.split(split_pattern, text) if phrase.strip()]
 
-    phrases_dict[filename] = phrases
-
-    return phrases_dict 
+    return sentences
 
 ###########################################################################################################
 
@@ -65,6 +63,10 @@ class bibliography():
         self.texts = {name[0:-4]: open( "data/silver/texts/" + name ).read()  for name in self.files}
         # entries are the story names, with the stories being stored in strings
         # e.g. self.texts['cthulhu'] = "The Call of Cthulhu" story, as a string
+
+        # sentences
+        self.sentences = {name[:-4]: text_sentences(os.path.join("data/silver/texts", name)) for name in self.files}
+        # entries are the story nomes, followed by a list containing its sentences
 
         # text metadata DataFrame 
         self.df_texts = pd.read_csv("data/gold/texts.csv")  # loads the texts dataframe

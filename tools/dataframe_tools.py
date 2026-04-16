@@ -6,7 +6,7 @@ import re
 import numpy as np
 from pathlib import Path
 
-#############################################################################################################################################
+#########################################################################################################################################
 
 # Functions
 
@@ -38,7 +38,7 @@ def normalize_title(title):
     
     return title
 
-# This function undo the normalization
+# This function undo the title normalization
 def unnormalize_title(title):
     if '_' not in title:
         return title.title()
@@ -46,3 +46,4 @@ def unnormalize_title(title):
     title = title.replace('_',' ').title()
 
     return title
+
