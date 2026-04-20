@@ -49,6 +49,29 @@ def text_sentences(filename):
 
     return sentences
 
+# this function calculates statistical quantities such as mean, mode, median, standard deviation, skewness and kurtosis
+
+def dist_statistics(distribution): 
+    distribution_statistics = {}
+
+    distribution_mean = np.mean(distribution)
+    distribution_std = np.std(distribution)
+    distribution_median = np.median(distribution)
+    distribution_mode = float(stats.mode(distribution).mode)
+    distribution_skew = stats.skew(distribution)
+    distribution_kurt = stats.kurtosis(distribution)
+
+    distribution_statistics = {'mean': float(round(distribution_mean, 4)), 
+                               'standard_deviation': float(round(distribution_std, 4)), 
+                               'distribution_mode': float(round(distribution_mode, 4)), 
+                               'distribution_median': float(round(distribution_median, 4)),
+                               'distribution_skew': float(round(distribution_skew, 4)),
+                               'distribution_kurt': float(round(distribution_kurt, 4))
+                               }
+
+    return distribution_statistics
+
+
 ###########################################################################################################
 
 # Class for working with the bibliography of texts

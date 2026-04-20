@@ -8,7 +8,7 @@ Na parte dos textos:
 
     1. Criar função pra splitar frases ------------------------------------------------------------------------ (FEITO)
         # 1.1 Testar função com o arquivo phrases_test.txt ---------------------------------------------------- (FEITO)
-    2. Criar função pra análise estatística frases (média, moda, mediana ,desvio padrão, skewness, curtose) --- 
+    2. Criar função pra análise estatística frases (média, moda, mediana ,desvio padrão, skewness, curtose) --- (FEITO)
     3. Plotar distribuições vocabulario/texto individuais 
     4. Plotar distribuições vocabulario/frase individuais 
     5. Fazer uma visualização parecido com mapa de calor para o teste estatístico das distribuições
