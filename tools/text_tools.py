@@ -15,7 +15,6 @@ import re  # for regex splitting
 
 # Functions
 
-
 # this functions checks if a given name is in the file
 def search_name(file_path, name):
     with open(file_path) as file: 

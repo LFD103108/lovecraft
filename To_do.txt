@@ -15,10 +15,10 @@ Na parte dos textos:
 
 Na parte dos gráficos: 
 
-    1. Formatar tamanho das fontes e colocar porcentagem ou numero absoluto (most magazine published)
-    2. Formatar gráfico pizza (most prominent story)
-    3. Formatar nome autores e colocar numero absoluto
-    4. Salvar todos gráficos na pasta plots
+    1. Formatar tamanho das fontes e colocar porcentagem ou numero absoluto (most magazine published) ---------- (FEITO)
+    2. Formatar gráfico pizza (most prominent story) ----------------------------------------------------------- (FEITO)
+    3. Formatar nome autores e colocar numero absoluto --------------------------------------------------------- (FEITO)
+    4. Salvar todos gráficos na pasta plots -------------------------------------------------------------------- (FEITO)
 
 Na parte das entidades: 
     
